@@ -21,7 +21,7 @@ console.log(kanbun);  // '㆚㆝㆘㆘㆐㆚㆜㆛㆑㆗㆝㆕'
 #### Browser
 
 ```html
-<script src="lib/random-script.js"></script>
+<script src="build/random-script.js"></script>
 <script>
   var random = RandomScript.create();
   alert(random.string(1, 'Emoticons'));

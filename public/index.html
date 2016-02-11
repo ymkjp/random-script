@@ -37,21 +37,56 @@
       }
     }
   </style>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.3.0/lodash.min.js"></script>
   <!--<script src="https://rawgit.com/ymkjp/random-script/feature/support-browser/build/random-script.js"></script>-->
-  <script src="https://cdn.rawgit.com/ymkjp/random-script/v0.3.0/build/random-script.js"></script>
+  <script src="https://cdn.rawgit.com/ymkjp/random-script/v0.3.1/build/random-script.js"></script>
 </head>
 <script>
   $(function() {
-    var random = require('random-script').create();
-    var content = $('#content');
-    content.html(random.string(1028, 'Kanbun'));
+    var random, keys, names, content, button, spin, elements, appendContents;
+    random = require('random-script').create();
+    content = $('#content-table-body');
+    button = $('#content-button');
+    spin = $('#spin-target');
+    keys = Object.keys(random.blocks);
+    appendContents = function(num) {
+      spin.addClass('fa-spin');
+      content.empty();
+      names = _.sampleSize(keys, num);
+      elements = '';
+      names.forEach(function(name) {
+        elements += '<tr><td>' + name + '</td><td>' + random.string(12, name) + '</td></tr>';
+      });
+      content.append(elements);
+      spin.removeClass('fa-spin');
+    };
+    button.on('click', function(event) {
+      event.preventDefault();
+      appendContents(8);
+    });
+    appendContents(8);
   });
 </script>
 <body>
 <div>
   <h1>RandomScript Sample</h1>
-  <p id="content"></p>
+  <table class="table compact hover order-column">
+    <caption>
+      <a id="content-button" class="btn-info btn-lg btn-block" href="#" role="button">
+        <i id="spin-target" class="fa fa-refresh fa-2x pull-left"></i>&nbsp;See other<br>&nbsp;Unicode blocks</a>
+    </caption>
+    <thead>
+    <tr>
+      <th>Unicode Blocks</th>
+      <th>random-script</th>
+    </tr>
+    </thead>
+    <tbody id="content-table-body">
+    </tbody>
+  </table>
 </div>
 </body>
 </html>

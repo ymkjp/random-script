@@ -20,7 +20,7 @@ console.log(kanbun);  // '㆚㆝㆘㆘㆐㆚㆜㆛㆑㆗㆝㆕'
 
 #### Browser
 
-See example on [RandomScript Sample](https://rawgit.com/ymkjp/random-script/feature/support-browser/public/index.html) page.
+See example on [RandomScript Sample](https://cdn.rawgit.com/ymkjp/random-script/v0.3.1/public/index.html) page.
 
 ```html
 <script src="build/random-script.js"></script>

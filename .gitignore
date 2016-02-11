@@ -1,5 +1,7 @@
 # random-script
 /lib/
+!.keep
+!.travis.yml
 
 # Logs
 logs

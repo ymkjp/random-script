@@ -34,7 +34,8 @@
     "generate": "node script/generate-*.js",
     "build": "browserify --require ./lib/main.js:random-script lib/main.js > build/random-script.js",
     "compile": "babel --out-dir lib/ src/",
-    "prepublish": "npm run compile && npm run build",
+    "prepublish": "npm run compile",
+    "postinstall": "npm run compile && npm run build",
     "pretest": "npm run compile",
     "test": "mocha --compilers js:espower-babel/guess"
   },

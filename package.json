@@ -1,7 +1,7 @@
 {
   "name": "random-script",
   "description": "Random Unicode script generator",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/ymkjp/random-script"
@@ -32,7 +32,7 @@
   },
   "scripts": {
     "generate": "node script/generate-*.js",
-    "build": "browserify lib/main.js > build/random-script.js",
+    "build": "browserify --require ./lib/main.js:random-script lib/main.js > build/random-script.js",
     "compile": "babel --out-dir lib/ src/",
     "prepublish": "npm run compile && npm run build",
     "pretest": "npm run compile",

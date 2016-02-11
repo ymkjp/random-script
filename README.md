@@ -20,10 +20,12 @@ console.log(kanbun);  // '㆚㆝㆘㆘㆐㆚㆜㆛㆑㆗㆝㆕'
 
 #### Browser
 
+See example on [RandomScript Sample](https://rawgit.com/ymkjp/random-script/feature/support-browser/public/index.html) page.
+
 ```html
 <script src="build/random-script.js"></script>
 <script>
-  var random = RandomScript.create();
+  var random = require('random-script').create();
   alert(random.string(1, 'Emoticons'));
 </script>
 ```

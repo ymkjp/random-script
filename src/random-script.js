@@ -1,9 +1,7 @@
-import Fs from 'fs';
 import Util from 'util';
 import Random from 'random-js';
+import UnicodeBlocks from '../data/unicode-8.0.0-blocks.json';
 
-const BLOCKS_PATH = './data/unicode-%s-blocks.json';
-const UNICODE_VERSION = '8.0.0';
 const DEFAULT_BLOCK = 'Basic Latin';
 
 export default class RandomScript
@@ -11,13 +9,10 @@ export default class RandomScript
   /**
    * @see https://github.com/ckknight/random-js/tree/v1.0.8#engines
    * @param {object} engine Engine of random-js: nativeMath, browserCrypto, mt19937()
-   * @param {string} version Unicode version
    */
-  constructor(engine = Random.engines.nativeMath, version = UNICODE_VERSION)
+  constructor(engine = Random.engines.nativeMath)
   {
-    let path = Util.format(BLOCKS_PATH, version);
-    let file = Fs.readFileSync(path);
-    this.blocks = JSON.parse(file);
+    this.blocks = UnicodeBlocks;
     this.engine = engine;
   }
 

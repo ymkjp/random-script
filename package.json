@@ -28,14 +28,16 @@
     "espower-babel": "^4.0.1",
     "mocha": "^2.4.5",
     "power-assert": "^1.2.0",
+    "uglify-js": "^2.6.1",
     "unicode-data": "mathiasbynens/node-unicode-data"
   },
   "scripts": {
     "generate": "node script/generate-*.js",
     "build": "browserify --require ./lib/main.js:random-script lib/main.js > build/random-script.js",
+    "minify": "uglifyjs build/random-script.js --compress --mangle --output build/random-script.min.js --source-map build/random-script.min.js.map --source-map-root https://cdn.rawgit.com/ymkjp/random-script/master/",
     "compile": "babel --out-dir lib/ src/",
     "prepublish": "npm run compile",
-    "postinstall": "npm run compile && npm run build",
+    "postinstall": "npm run compile && npm run build && npm run minify",
     "pretest": "npm run compile",
     "test": "mocha --compilers js:espower-babel/guess"
   },

@@ -14,8 +14,8 @@ npm install random-script
 
 ```js
 var randomScript = require('random-script').create();
-var kanbun = randomScript.string(12, 'Kanbun');
-console.log(kanbun);  // '㆚㆝㆘㆘㆐㆚㆜㆛㆑㆗㆝㆕'
+var kanbun = randomScript.string(12, 'Emoticons');
+console.log(kanbun);  // '😌😺😴😏😋😞😡😶😔😏🙌🙇'
 ```
 
 #### Browser
@@ -23,7 +23,7 @@ console.log(kanbun);  // '㆚㆝㆘㆘㆐㆚㆜㆛㆑㆗㆝㆕'
 See example on [RandomScript Demo](https://cdn.rawgit.com/ymkjp/random-script/master/public/index.html) page.
 
 ```html
-<script src="build/random-script.js"></script>
+<script src="https://rawgit.com/ymkjp/random-script/master/build/random-script.min.js"></script>
 <script>
   var random = require('random-script').create();
   alert(random.string(1, 'Emoticons'));

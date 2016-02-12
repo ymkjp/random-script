@@ -1,4 +1,5 @@
 import Util from 'util';
+import Punycode from 'punycode';
 import Random from 'random-js';
 import UnicodeBlocks from '../data/unicode-8.0.0-blocks.json';
 
@@ -42,9 +43,9 @@ export default class RandomScript
     let random = Random.integer(range[0], range[1]);
     let cue = [];
     for (let i = 0; i < length; ++i) {
-      cue.push(String.fromCharCode(random(this.engine)));
+      cue.push(random(this.engine));
     }
-    return cue.join('');
+    return Punycode.ucs2.encode(cue);
   }
 
   static standardizeKey(key)

@@ -20,10 +20,10 @@ console.log(emojis);  // '😌😺😴😏😋😞😡😶😔😏🙌🙇'
 
 #### Browser
 
-See example on [RandomScript Demo](https://cdn.rawgit.com/ymkjp/random-script/master/public/index.html) page.
+See example on [**demo page**](https://rawgit.com/ymkjp/random-script/master/public/index.html).
 
 ```html
-<script src="https://rawgit.com/ymkjp/random-script/master/build/random-script.min.js"></script>
+<script src="https://cdn.rawgit.com/ymkjp/random-script/master/build/random-script.min.js"></script>
 <script>
   var random = require('random-script').create();
   alert(random.string(1, 'Arabic'));

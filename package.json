@@ -16,15 +16,17 @@
     "test": "test"
   },
   "dependencies": {
-    "random-js": "~1.0.8"
+    "random-js": "^1.0.8"
   },
   "devDependencies": {
     "babel-cli": "^6.5.1",
     "babel-core": "^6.5.1",
+    "babel-eslint": "^4.1.8",
     "babel-plugin-add-module-exports": "^0.1.2",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.5.0",
     "babel-preset-es2015": "^6.5.0",
     "browserify": "^13.0.0",
+    "eslint": "^1.10.3",
     "espower-babel": "^4.0.1",
     "mocha": "^2.4.5",
     "power-assert": "^1.2.0",
@@ -36,9 +38,10 @@
     "build": "browserify --require ./lib/main.js:random-script lib/main.js > build/random-script.js",
     "minify": "uglifyjs build/random-script.js --compress --mangle --output build/random-script.min.js --source-map build/random-script.min.js.map --source-map-root https://cdn.rawgit.com/ymkjp/random-script/master/",
     "compile": "babel --out-dir lib/ src/",
-    "prepublish": "npm run compile",
+    "lint": "eslint src/** test/**",
+    "prepublish": "npm run lint && npm run compile",
     "postinstall": "npm run compile && npm run build && npm run minify",
-    "pretest": "npm run compile",
+    "pretest": "npm run lint && npm run compile",
     "test": "mocha --compilers js:espower-babel/guess"
   },
   "babel": {
@@ -48,5 +51,13 @@
     "plugins": [
       "add-module-exports"
     ]
-  }
+  },
+    "eslintConfig": {
+        "parser": "babel-eslint",
+        "env": {
+            "browser": true,
+            "node": true,
+            "mocha": true
+        }
+    }
 }

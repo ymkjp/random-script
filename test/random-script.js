@@ -2,27 +2,39 @@ import assert from 'power-assert';
 import RandomScript from '../lib/main';
 import Random from 'random-js';
 
-describe('RandomScript', () => {
-  let engine, fixed, unfixed, num;
+describe('RandomScript::create', () => {
+  let one, two;
 
-  beforeEach('Initialize instances', function() {
+  before('Initialize instances', () => {
+    one = RandomScript.create();
+    two = RandomScript.create();
+  });
+
+  it('should init RandomScript instance', () => {
+    assert(typeof one === 'object');
+    assert(one instanceof RandomScript);
+  });
+
+  it('should init different instances each time', () => {
+    assert.notStrictEqual(one, two);
+  });
+});
+
+describe('RandomScript::string', () => {
+  let engine, fixed, num;
+
+  before('Generate random num', () => {
+    num = Random().integer(1, 1028);
+  });
+
+  beforeEach('Initialize fixed-seed instance', () => {
     engine = Random.engines.mt19937().seed(0);
     fixed = RandomScript.create(engine);
-    unfixed = RandomScript.create();
-    num = Random.integer(1, 1028)(Random.engines.mt19937().autoSeed());
-  });
-
-  it('should be object type', () => {
-    assert(typeof fixed === 'object' && fixed instanceof RandomScript);
-  });
-
-  it('should be different instances', () => {
-    assert.notStrictEqual(fixed, unfixed);
   });
 
   it('should generate given length strings', () => {
-    assert.equal(unfixed.string(num).length, num);
-    assert.equal(unfixed.string('20').length, 20);
+    assert.equal(fixed.string(num).length, num);
+    assert.equal(fixed.string(num.toString()).length, num);
   });
 
   /**
@@ -35,14 +47,14 @@ describe('RandomScript', () => {
   });
 
   it('should not accept unexpected length', () => {
-    assert.throws(() => unfixed.string(-1), RangeError);
-    assert.throws(() => unfixed.string(0), RangeError);
-    assert.throws(() => unfixed.string(null), RangeError);
-    assert.throws(() => unfixed.string('foo'), RangeError);
+    assert.throws(() => fixed.string(-1), RangeError);
+    assert.throws(() => fixed.string(0), RangeError);
+    assert.throws(() => fixed.string(null), RangeError);
+    assert.throws(() => fixed.string('foo'), RangeError);
   });
 
   it('should not accept unknown Unicode block name', () => {
-    assert.throws(() => unfixed.string(3, 'Foo'), Error);
+    assert.throws(() => fixed.string(3, 'Foo'), Error);
   });
 });
 

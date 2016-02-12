@@ -3,10 +3,10 @@ import RandomScript from '../lib/main';
 import Random from 'random-js';
 
 describe('RandomScript', () => {
-  let fixed, unfixed, num;
-  let engine = Random.engines.mt19937().seed(0);
+  let engine, fixed, unfixed, num;
 
   beforeEach('Initialize instances', function() {
+    engine = Random.engines.mt19937().seed(0);
     fixed = RandomScript.create(engine);
     unfixed = RandomScript.create();
     num = Random.integer(1, 1028)(Random.engines.mt19937().autoSeed());
@@ -25,15 +25,20 @@ describe('RandomScript', () => {
     assert.equal(unfixed.string('20').length, 20);
   });
 
+  /**
+   * @see http://apps.timwhitlock.info/unicode/inspect/hex/1F600
+   * @see http://apps.timwhitlock.info/unicode/inspect/hex/1F603
+   */
   it('should accept Unicode block name', () => {
     assert.equal(fixed.string(3, 'Hiragana'), 'ぬくふ');
-    assert.equal(fixed.string(2, 'CJK Radicals Supplement'), '⻀⻃');
+    assert.equal(fixed.string(2, 'Emoticons'), '\uD83D\uDE00\uD83D\uDE03');
   });
 
   it('should not accept unexpected length', () => {
     assert.throws(() => unfixed.string(-1), RangeError);
     assert.throws(() => unfixed.string(0), RangeError);
     assert.throws(() => unfixed.string(null), RangeError);
+    assert.throws(() => unfixed.string('foo'), RangeError);
   });
 
   it('should not accept unknown Unicode block name', () => {

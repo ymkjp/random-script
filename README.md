@@ -4,6 +4,11 @@
 
 This is a library to generate random strings for multiple languages in JavaScript.
 
+## Demos
+
+* Playground on Node: [**Tonic + npm: random-script**](https://tonicdev.com/npm/random-script)
+* Example on browser: [**Sample page**](https://rawgit.com/ymkjp/random-script/master/public/index.html)
+
 ## Usage
 
 #### node.js
@@ -13,17 +18,19 @@ npm install random-script
 ```
 
 ```js
-var randomScript = require('random-script').create();
-var emojis = randomScript.string(12, 'Emoticons');
+var random = require('random-script').create();
+var emojis = random.string(12, 'Emoticons');
 console.log(emojis);  // '😌😺😴😏😋😞😡😶😔😏🙌🙇'
 ```
 
 #### Browser
 
-See example on [**demo page**](https://rawgit.com/ymkjp/random-script/master/public/index.html).
+It is recommended to use [Browserify](http://browserify.org/) with `npm install random-script`.
+
+Below is just for a trial usage.
 
 ```html
-<script src="https://cdn.rawgit.com/ymkjp/random-script/master/build/random-script.min.js"></script>
+<script src="https://cdn.rawgit.com/ymkjp/random-script/v0.4.4/build/random-script.min.js"></script>
 <script>
   var random = require('random-script').create();
   alert(random.string(1, 'Arabic'));

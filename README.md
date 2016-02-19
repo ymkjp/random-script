@@ -30,7 +30,7 @@ It is recommended to use [Browserify](http://browserify.org/) with `npm install 
 Below is just for a trial usage.
 
 ```html
-<script src="https://cdn.rawgit.com/ymkjp/random-script/v0.4.4/build/random-script.min.js"></script>
+<script src="https://cdn.rawgit.com/ymkjp/random-script/v0.4.6/build/random-script.min.js"></script>
 <script>
   var random = require('random-script').create();
   alert(random.string(1, 'Arabic'));

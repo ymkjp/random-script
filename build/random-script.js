@@ -83,10 +83,8 @@ var RandomScript = function () {
   }, {
     key: 'standardizeKey',
     value: function standardizeKey(key) {
-      var result = undefined;
-      result = key.replace(/[\s\-_]/g, '');
-      result = RandomScript.manualLowercase(result);
-      return result;
+      var normalized = key.replace(/[\s\-_]/g, '');
+      return RandomScript.manualLowercase(normalized);
     }
   }, {
     key: 'manualLowercase',

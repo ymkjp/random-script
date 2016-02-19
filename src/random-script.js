@@ -33,15 +33,15 @@ export default class RandomScript
     if (1 > length || Number.isNaN(length)) {
       throw new RangeError('Argument length should be 1 or greater.');
     }
-    let key = RandomScript.standardizeKey(name);
+    const key = RandomScript.standardizeKey(name);
     if (!this.blocks.hasOwnProperty(key)) {
       throw new Error(Util.format(
         'Unknown name of Unicode block "%s". Choose from http://ftp.unicode.org/Public/8.0.0/ucd/Blocks.txt',
         name));
     }
-    let range = this.blocks[key];
-    let random = Random.integer(range[0], range[1]);
-    let cue = [];
+    const range = this.blocks[key];
+    const random = Random.integer(range[0], range[1]);
+    const cue = [];
     for (let i = 0; i < length; ++i) {
       cue.push(random(this.engine));
     }
@@ -50,10 +50,8 @@ export default class RandomScript
 
   static standardizeKey(key)
   {
-    let result;
-    result = key.replace(/[\s\-_]/g, '');
-    result = RandomScript.manualLowercase(result);
-    return result;
+    const normalized = key.replace(/[\s\-_]/g, '');
+    return RandomScript.manualLowercase(normalized);
   }
 
   static manualLowercase(string)

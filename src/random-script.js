@@ -41,10 +41,7 @@ export default class RandomScript
     }
     const range = this.blocks[key];
     const random = Random.integer(range[0], range[1]);
-    const cue = [];
-    for (let i = 0; i < length; ++i) {
-      cue.push(random(this.engine));
-    }
+    const cue = Array.from({length: length}, () => random(this.engine));
     return Punycode.ucs2.encode(cue);
   }
 

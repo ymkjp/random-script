@@ -31,7 +31,7 @@
     "mocha": "^2.4.5",
     "power-assert": "^1.2.0",
     "uglify-js": "^2.6.1",
-    "unicode-data": "mathiasbynens/node-unicode-data"
+    "unicode-data": "github:mathiasbynens/node-unicode-data"
   },
   "scripts": {
     "generate": "node script/generate-*.js",
